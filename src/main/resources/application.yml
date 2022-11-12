@@ -1,12 +1,12 @@
 # spring配置
 spring:
-#  security:
-#   user:
-#    name: baizhi958216
-#    password: 123456789
-#    roles:
-#    - user
-#    - admin
+ security:
+  user:
+   name: baizhi958216
+   password: 123456789
+   roles:
+   - user
+   - admin
  datasource:
   url: jdbc:mysql://127.0.0.1:3306/nahida
   username: root
