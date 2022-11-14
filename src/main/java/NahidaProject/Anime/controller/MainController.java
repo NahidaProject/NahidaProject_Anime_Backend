@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api")
 public class MainController {
 
@@ -28,12 +29,12 @@ public class MainController {
         return "Welcome To Nahida " + PROJECT + " Index";
     }
 
-    @RequestMapping(value = "/getAllUsers",method = RequestMethod.GET)
+    @RequestMapping("/getAllUsers")
     @CrossOrigin
-    public void getAllUsers(HttpServletResponse response) throws IOException {
-        List<UserData> u = mapper.findAllUsers();
-        response.getWriter().print(u);
-        response.flushBuffer();
-        response.setStatus(200);
+    @ResponseBody
+    public List<UserData> getUserList(){
+        List<UserData> userDataList = new ArrayList<>();
+        userDataList = mapper.findAllUsers();
+        return userDataList;
     }
 }
