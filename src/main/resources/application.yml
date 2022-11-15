@@ -8,10 +8,12 @@ spring:
    - user
    - admin
  datasource:
-  url: jdbc:mysql://127.0.0.1:3306/nahida
+  url: jdbc:mysql://127.0.0.1:3306/nahida_anime
   username: root
   password: 123456
   driver-class-name: com.mysql.cj.jdbc.Driver
+ mvc:
+  static-path-pattern: static/**
 #  端口号
 server:
  port: 1314

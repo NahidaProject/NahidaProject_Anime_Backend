@@ -24,19 +24,20 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChainForLogin(HttpSecurity http) throws Exception{
+    SecurityFilterChain securityFilterChainForLogin(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .anyRequest().hasRole("admin")
-            .and()
-            .formLogin();
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .anyRequest().permitAll()
+//              .anyRequest().hasRole("admin")
+                .and()
+                .formLogin();
         return http.build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 }
