@@ -3,7 +3,6 @@ package NahidaProject.Anime.controller;
 import NahidaProject.Anime.entity.UserData;
 import NahidaProject.Anime.mapper.MainMapper;
 import NahidaProject.Anime.service.UserService;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,18 +88,24 @@ public class UsersController {
         }
     }
 
-    @RequestMapping(value = "/deleteUser",method = RequestMethod.POST,params = {"username"})
+    @RequestMapping(value = "/deleteUser",method = RequestMethod.POST,params = {"username","currentUser"})
     @CrossOrigin
     private void del(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UserData userData = new UserData();
-        userData.setUsername(request.getParameter("username"));
-        boolean flag = userService.Delete(userData);
-        if(flag){
-            response.getWriter().print("Success");
-            response.setStatus(200);
-        }else {
+        UserData u = userService.findUserByName(request.getParameter("currentUser"));
+        if(!Objects.equals(u.getRole(), "Admin")){
             response.getWriter().print("Fail");
             response.setStatus(400);
+        }else {
+            UserData userData = new UserData();
+            userData.setUsername(request.getParameter("username"));
+            boolean flag = userService.Delete(userData);
+            if (flag) {
+                response.getWriter().print("Success");
+                response.setStatus(200);
+            } else {
+                response.getWriter().print("Fail");
+                response.setStatus(400);
+            }
         }
     }
 }
