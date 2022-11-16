@@ -1,7 +1,6 @@
 package NahidaProject.Anime.controller;
 
 import NahidaProject.Anime.entity.UserData;
-import NahidaProject.Anime.mapper.MainMapper;
 import NahidaProject.Anime.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +18,13 @@ import java.util.Objects;
 public class UsersController {
     @Resource
     UserService userService;
-    @Resource
-    MainMapper mapper;
 
     @RequestMapping("/getAllUsers")
     @CrossOrigin
     @ResponseBody
     public List<UserData> getUserList(){
         List<UserData> userDataList;
-        userDataList = mapper.findAllUsers();
+        userDataList = userService.findAllUsers();
         return userDataList;
     }
 

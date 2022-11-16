@@ -1,24 +1,29 @@
 package NahidaProject.Anime.service;
 
 import NahidaProject.Anime.entity.UserData;
-import NahidaProject.Anime.mapper.MainMapper;
+import NahidaProject.Anime.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserService {
     @Resource
-    MainMapper mapper;
+    UserMapper userMapper;
 
     public UserData findUserByName(String username){
-        return mapper.findUserByName(username);
+        return userMapper.findUserByName(username);
+    }
+
+    public List<UserData> findAllUsers() {
+        return userMapper.findAllUsers();
     }
 
     public boolean Login(UserData userData){
         String name = userData.getUsername();
         String password = userData.getPassword();
-        UserData u1 =  mapper.findUserByName(name);
+        UserData u1 =  userMapper.findUserByName(name);
         if(u1==null){
             return false;
         }else{
@@ -27,17 +32,17 @@ public class UserService {
     }
 
     public boolean Register(UserData userData){
-        int x = mapper.addUser(userData.getUsername(),userData.getPassword(),userData.getRole());
+        int x = userMapper.addUser(userData.getUsername(),userData.getPassword(),userData.getRole());
         return x > 0;
     }
 
     public boolean Delete(UserData userData){
-        int x = mapper.delUser(userData.getUsername());
+        int x = userMapper.delUser(userData.getUsername());
         return x > 0;
     }
 
     public boolean Update(UserData userData){
-        int x = mapper.updateUser(userData.getId(),userData.getUsername(),userData.getPassword(),userData.getRole());
+        int x = userMapper.updateUser(userData.getId(),userData.getUsername(),userData.getPassword(),userData.getRole());
         return x > 0;
     }
 }

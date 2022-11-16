@@ -1,7 +1,6 @@
 package NahidaProject.Anime.controller;
 
 import NahidaProject.Anime.entity.AnimeData;
-import NahidaProject.Anime.mapper.AnimeMapper;
 import NahidaProject.Anime.service.AnimeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +15,6 @@ import java.util.List;
 public class AnimeController {
     @Resource
     AnimeService animeService;
-    @Resource
-    AnimeMapper animeMapper;
 
     @RequestMapping("/getAllAnime")
     @CrossOrigin

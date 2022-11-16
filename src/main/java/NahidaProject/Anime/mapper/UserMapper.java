@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
-public interface MainMapper {
+public interface UserMapper {
     @Select("select * from users where username = #{username}")
     UserData findUserByName(String username);
 
