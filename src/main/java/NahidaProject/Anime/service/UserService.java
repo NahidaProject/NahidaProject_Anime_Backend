@@ -2,7 +2,6 @@ package NahidaProject.Anime.service;
 
 import NahidaProject.Anime.entity.UserData;
 import NahidaProject.Anime.mapper.MainMapper;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
