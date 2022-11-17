@@ -1,19 +1,15 @@
+web:
+ upload-path: F:/
 # spring配置
 spring:
- security:
-  user:
-   name: baizhi958216
-   password: 123456789
-   roles:
-   - user
-   - admin
  datasource:
   url: jdbc:mysql://127.0.0.1:3306/nahida_anime
   username: root
   password: 123456
   driver-class-name: com.mysql.cj.jdbc.Driver
- mvc:
-  static-path-pattern: static/**
+ web:
+  resources:
+   static-locations: file:${web.upload-path}
 #  端口号
 server:
  port: 1314
