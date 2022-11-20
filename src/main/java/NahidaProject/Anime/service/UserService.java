@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public boolean Register(UserData userData){
-        int x = userMapper.addUser(userData.getUsername(),userData.getPassword(),userData.getRole());
+        int x = userMapper.addUser(userData);
         return x > 0;
     }
 

@@ -14,7 +14,7 @@ public interface UserMapper {
     List<UserData> findAllUsers();
 
     @Insert("insert into users (username,password,role) values(#{username},#{password},#{role})")
-    int addUser(String username,String password,String role);
+    int addUser(UserData userData);
 
     @Update("update users set username=#{username} ,password=#{password}, role=#{role} where id=#{id}")
     int updateUser(int id,String username,String password,String role);

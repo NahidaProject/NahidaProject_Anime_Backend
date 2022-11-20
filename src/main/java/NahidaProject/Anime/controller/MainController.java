@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 @ResponseBody
 @CrossOrigin
 public class MainController {
-    @Value("${Nahida.project}")
+    @Value("${Nahida.project-name}")
     String PROJECT;
 
     @RequestMapping("/")
