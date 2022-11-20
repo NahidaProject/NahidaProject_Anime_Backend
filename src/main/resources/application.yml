@@ -16,4 +16,5 @@ server:
  address: 0.0.0.0
 #  变量
 Nahida:
- project: Anime
+ project-name: Anime
+ media-path: F:/anime

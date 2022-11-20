@@ -1,6 +1,5 @@
 package NahidaProject.Anime.service;
 
-import NahidaProject.Anime.entity.AnimeData;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,9 +9,8 @@ import java.io.IOException;
 @Service
 public class FileUploadService {
 
-    public Object saveThisPoster(MultipartFile poster, String a_id) {
-        String posterName = a_id + ".png";
-        File pFile = new File("F:/anime/main_image/" + posterName);
+    public Object saveThisPoster(MultipartFile poster, String posterName) {
+        File pFile = new File(posterName);
         try {
             poster.transferTo(pFile);
         } catch (IOException e) {
