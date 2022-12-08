@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/anime")
 @ResponseBody
 @CrossOrigin
 public class AnimeController {

@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/file")
 @ResponseBody
 @CrossOrigin
 public class FileUploadController {

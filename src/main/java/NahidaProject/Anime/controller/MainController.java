@@ -14,7 +14,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String index() {
-        return "Welcome To Nahida " + PROJECT + " Index";
+        return "Welcome To Nahida " + PROJECT + " Index Page";
     }
 
     @RequestMapping(value = "/serverStatus",method = RequestMethod.GET)

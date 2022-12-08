@@ -14,7 +14,7 @@ import java.util.Objects;
 @RestController
 @ResponseBody
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UsersController {
     @Resource
     UserService userService;

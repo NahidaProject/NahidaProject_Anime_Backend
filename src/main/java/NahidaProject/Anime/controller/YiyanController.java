@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @ResponseBody
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/yiyan")
 public class YiyanController {
     @Resource
     YiyanService yiyanService;
