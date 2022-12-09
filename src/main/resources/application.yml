@@ -3,7 +3,7 @@ web:
 # spring配置
 spring:
  datasource:
-  url: jdbc:mysql://127.0.0.1:3306/nahida_anime
+  url: jdbc:mysql://127.0.0.1:3306/anime
   username: root
   password: 123456
   driver-class-name: com.mysql.cj.jdbc.Driver
