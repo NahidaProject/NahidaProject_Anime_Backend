@@ -1,5 +1,4 @@
 package NahidaProject.Anime.mapper;
-
 import NahidaProject.Anime.entity.UserData;
 import org.apache.ibatis.annotations.*;
 
@@ -7,18 +6,15 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Select("select * from users where username = #{username}")
-    UserData findUserByName(String username);
+    @Select("select * from user")
+    List<UserData> GetUsersList();
 
-    @Select("select * from users")
-    List<UserData> findAllUsers();
+    @Insert("insert into user value(#{UserID},#{UserName},#{UserAccount},#{UserEmail},#{UserPassword},#{UserRegisterDate},#{UserDescription},#{UserGender})")
+    int NewUser(UserData userData);
 
-    @Insert("insert into users (username,password,role) values(#{username},#{password},#{role})")
-    int addUser(UserData userData);
+    @Delete("delete from user where UserID = #{UserID}")
+    void DeleteUser(int UserID);
 
-    @Update("update users set username=#{username} ,password=#{password}, role=#{role} where id=#{id}")
-    int updateUser(int id,String username,String password,String role);
-
-    @Delete("delete from users where username = #{username}")
-    int delUser(String username);
+    @Update("update user set UserAccount=#{UserAccount},UserName=#{UserName},UserEmail=#{UserEmail},UserPassword=#{UserPassword},UserDescription=#{UserDescription},UserGender=#{UserGender},UserRegisterDate=#{UserRegisterDate} where UserID=#{UserID}")
+    int UpdateUser(UserData userData);
 }
