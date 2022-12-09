@@ -20,24 +20,34 @@ public class FileUploadController {
     @Value("${Nahida.media-path}")
     String mediaPath;
 
-    @RequestMapping(value = "/animePosterUpload/{a_id}", method = RequestMethod.POST)
-    public Object animePosterUpload(@RequestParam("poster") MultipartFile poster, @PathVariable String a_id) {
-        String posterName = mediaPath + "/main_image/" + a_id + ".png";
+    @RequestMapping(value = "/AnimePosterUpload/{aid}", method = RequestMethod.POST)
+    public Object AnimePosterUpload(@RequestParam("poster") MultipartFile poster, @PathVariable int aid) {
+        String posterName;
+        if(aid>=10){
+            posterName = mediaPath + "/main_image/" + "0000"+aid + ".png";
+        }else {
+            posterName = mediaPath + "/main_image/" + "00000" + aid + ".png";
+        }
         return new FileUploadService().saveThisPoster(poster, posterName);
     }
 
-    @RequestMapping(value = "/animeVideosUpload/{a_id}", method = RequestMethod.POST)
-    public Object animeVideosUpload(@RequestParam("videos") MultipartFile videos, @PathVariable String a_id) {
-        int a_set_tmp = animeService.findAnimeById(a_id).getA_set();
-        String a_set;
-        if (a_set_tmp >= 10 && a_set_tmp <= 99) {
-            a_set = "0" + a_set_tmp;
-        } else if (a_set_tmp < 10) {
-            a_set = "00" + a_set_tmp;
+    @RequestMapping(value = "/AnimeVideosUpload/{aid}", method = RequestMethod.POST)
+    public Object AnimeVideosUpload(@RequestParam("videos") MultipartFile videos, @PathVariable int aid) {
+        int EpisodeTmp = animeService.GetAnimeByID(aid).getAnimeEpisode();
+        String Episode;
+        if (EpisodeTmp >= 10 && EpisodeTmp <= 99) {
+            Episode = "0" + EpisodeTmp;
+        } else if (EpisodeTmp < 10) {
+            Episode = "00" + EpisodeTmp;
         } else {
-            a_set = "" + a_set_tmp;
+            Episode = "" + EpisodeTmp;
         }
-        String videoName = mediaPath + "/videos/" + a_id + "/" + a_id + "_" + a_set + ".mp4";
+        String videoName;
+        if(aid>=10){
+            videoName = mediaPath + "/videos/" + "0000"+aid + "/" + "0000"+aid + "_" + Episode + ".mp4";
+        }else {
+            videoName = mediaPath + "/videos/" + "00000" + aid + "/" + "00000" + aid + "_" + Episode + ".mp4";
+        }
         return new FileUploadService().saveThisVideo(videos, videoName);
     }
 }
