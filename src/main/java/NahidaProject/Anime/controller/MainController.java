@@ -17,7 +17,7 @@ public class MainController {
         return "Welcome To Nahida " + PROJECT + " Index Page";
     }
 
-    @RequestMapping(value = "/serverStatus",method = RequestMethod.GET)
+    @RequestMapping( "/serverStatus")
     public void serverStatus(HttpServletResponse response){
         response.setStatus(201);
     }
