@@ -1,45 +1,38 @@
 package NahidaProject.Anime.controller;
 
-import NahidaProject.Anime.entity.YiyanData;
-import NahidaProject.Anime.service.YiyanService;
+import NahidaProject.Anime.entity.YiYanData;
+import NahidaProject.Anime.service.AdminService;
+import NahidaProject.Anime.service.YiYanService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
 @ResponseBody
 @CrossOrigin
-@RequestMapping("/api/yiyan")
-public class YiyanController {
+@RequestMapping("/api/YiYan")
+public class YiYanController {
     @Resource
-    YiyanService yiyanService;
+    YiYanService yiYanService;
+    @Resource
+    AdminService adminService;
 
-    @RequestMapping(value = "/yiyanrandom",method = RequestMethod.GET)
-    public YiyanData yiyanrandom(HttpServletResponse response){
-        response.setStatus(200);
-        return yiyanService.getRandomYiyan();
+    @RequestMapping("/Random")
+    public YiYanData Random(){
+        return yiYanService.RandomYiYan();
     }
 
-    @RequestMapping(value = "/getallyiyan",method = RequestMethod.GET)
-    public List<YiyanData> allyiyan(HttpServletResponse response){
-        List<YiyanData> yiyanDataList;
-        yiyanDataList = yiyanService.getAllYiyan();
-        response.setStatus(200);
-        return yiyanDataList;
+    @RequestMapping("/GetAllYiYan")
+    public List<YiYanData> GetAllYiYan(){
+        List<YiYanData> yiYanDataList;
+        yiYanDataList = yiYanService.GetAllYiYan();
+        return yiYanDataList;
     }
 
-    @RequestMapping(value = "/addyiyan", method = RequestMethod.POST)
-    private void addyiyan(@RequestBody YiyanData yiyanData, HttpServletResponse response) throws IOException {
-        boolean flag = yiyanService.addYiyan(yiyanData);
-        if (flag) {
-            response.getWriter().print("Success");
-            response.setStatus(200);
-        } else {
-            response.getWriter().print("forgot-something");
-            response.setStatus(400);
-        }
+    @RequestMapping(value = "/NewYiYan", method = RequestMethod.POST)
+    private void AddYiYan(@RequestBody YiYanData yiYanData){
+        yiYanData.setAdminID(adminService.GetAdminIDByAccount(yiYanData.getAdminAccount()));
+        yiYanService.NewYiYan(yiYanData);
     }
 }

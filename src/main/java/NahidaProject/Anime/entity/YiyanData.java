@@ -3,7 +3,10 @@ package NahidaProject.Anime.entity;
 import lombok.Data;
 
 @Data
-public class YiyanData {
-    String yiyan;
-    String fromwhere;
+public class YiYanData {
+    int YiYanID;
+    int AdminID;
+    String AdminAccount;
+    String Sentence;
+    String Origin;
 }
