@@ -15,10 +15,11 @@ import java.util.List;
 public class AnimeController {
     @Resource
     AnimeService animeService;
-
+    //  新增动漫
     @RequestMapping(value = "/NewAnime",method = RequestMethod.POST)
     private String NewAnime(@RequestBody AnimeData animeData){
         Gson gson = new Gson();
+    //  将动漫ID关联动漫类型和动漫配音
         AnimeMN(animeData);
         if(animeService.NewAnime(animeData)){
            return gson.toJson("SUCCESS");
@@ -26,17 +27,17 @@ public class AnimeController {
            return gson.toJson("FAILED");
         }
     }
-
+    //  获取所有动漫
     @RequestMapping("/GetAllAnimes")
     private List<AnimeData> GetAllAnimes(){
         return animeService.GetAllAnimes();
     }
-
+    //  通过ID获取动漫
     @RequestMapping(value = "/GetAnimeByID/{aid}")
     private AnimeData GetAnimeByID(@PathVariable int aid){
         return animeService.GetAnimeByID(aid);
     }
-
+    //  更新动漫
     @RequestMapping(
             value = "/UpdateAnime",
             method = {RequestMethod.PUT,RequestMethod.POST},
@@ -52,7 +53,7 @@ public class AnimeController {
             return gson.toJson("失败");
         }
     }
-
+    //  删除动漫
     @RequestMapping(value = "/DeleteAnime",method = RequestMethod.DELETE)
     private void DeleteAnime(@RequestBody AnimeData animeData){
         animeService.DeleteAnime(animeData.getAnimeID());

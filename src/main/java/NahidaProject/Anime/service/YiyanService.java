@@ -20,8 +20,7 @@ public class YiYanService {
         return yiYanMapper.GetAllYiYan();
     }
 
-    public boolean NewYiYan(YiYanData yiYanData) {
-        int x = yiYanMapper.NewYiYan(yiYanData);
-        return x > 0;
+    public void NewYiYan(YiYanData yiYanData) {
+        yiYanMapper.NewYiYan(yiYanData);
     }
 }
