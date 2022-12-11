@@ -20,4 +20,13 @@ public interface UserMapper {
 
     @Select("select UserPassword from user where UserAccount=#{UserAccount}")
     String GetUserPassword(UserData userData);
+
+    @Select("select UserName from user where UserAccount=#{UserAccount}")
+    String GetUserName(UserData userData);
+
+    @Select("select UserName from user where UserEmail=#{UserEmail}")
+    String GetUserNameByUserEmail(UserData userData);
+
+    @Select("select * from user where UserAccount=#{UserAccount}")
+    UserData GetUserByUserAccount(UserData userData);
 }

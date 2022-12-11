@@ -9,12 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @ServletComponentScan
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//        用户登录之前不发送Session
+        request.getSession(false);
 //        处理预请求
         if(request.getMethod().equalsIgnoreCase("OPTIONS")){
             return true;
@@ -27,7 +30,14 @@ public class LoginInterceptor implements HandlerInterceptor {
                 handleResponse(response);
                 return false;
             }else if(cookies.length==2) {
-                return true;
+                HttpSession httpSession = request.getSession();
+                Object userData = httpSession.getAttribute("USER_SESSION");
+                if(userData!=null){
+                    return true;
+                }else {
+                    handleResponse(response);
+                    return false;
+                }
             }else {
                 handleResponse(response);
                 return false;

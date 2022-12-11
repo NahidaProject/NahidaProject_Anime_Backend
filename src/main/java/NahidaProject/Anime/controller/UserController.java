@@ -28,6 +28,12 @@ public class UserController {
         return userDataList;
     }
 
+    @RequestMapping("/GetCurrentUserID")
+    public int GetUserID(){
+        List<UserData> allUsers = GetAllUsers();
+        return allUsers.size()+1;
+    }
+
     @RequestMapping(value = "NewUser",method = RequestMethod.POST)
     public String NewUser(@RequestBody UserData userData){
         Gson gson = new Gson();
@@ -67,15 +73,35 @@ public class UserController {
             cookie.setPath("/");
             response.addCookie(cookie);
             return gson.toJson("USER NOT FOUND OR INCORRECT PASSWORD");
-        }else{
+        }else if(userService.GetUserPassword(userData).equals(userData.getUserPassword())){
 //            登录成功
-            session.setAttribute("isLogin",true);
-            Cookie cookie = new Cookie("Account",userData.getUserAccount());
+            session.setAttribute("USER_SESSION",userData);
+            Cookie cookie = new Cookie("Account",userService.GetUserName(userData));
 //            cookies保存3600s, 也就是1小时后需要重新登录
             cookie.setMaxAge(3600);
             cookie.setPath("/");
             response.addCookie(cookie);
             return gson.toJson("SUCCESS");
+        }else {
+            response.setStatus(403);
+            return gson.toJson("?");
+        }
+    }
+
+    @RequestMapping(value = "forgot",method = RequestMethod.POST)
+    public String forgot(@RequestBody UserData userData){
+        Gson gson = new Gson();
+//        通过账号取得用户名
+        String UserName = userService.GetUserName(userData);
+//        比对邮箱绑定的用户名
+        String UserName1 = userService.GetUserNameByUserEmail(userData);
+        if(UserName.equals(UserName1)){
+            UserData userData1 = userService.GetUserByUserAccount(userData);
+            userData1.setUserPassword(userData.getUserPassword());
+            userService.UpdateUser(userData1);
+            return gson.toJson("SUCCESS");
+        }else {
+            return gson.toJson("FAILED");
         }
     }
 }

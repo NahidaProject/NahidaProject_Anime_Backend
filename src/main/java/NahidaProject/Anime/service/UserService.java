@@ -33,4 +33,9 @@ public class UserService {
     public String GetUserPassword(UserData userData){
         return userMapper.GetUserPassword(userData);
     }
+    public String GetUserName(UserData userData){
+        return userMapper.GetUserName(userData);
+    }
+    public String GetUserNameByUserEmail(UserData userData){return userMapper.GetUserNameByUserEmail(userData);}
+    public UserData GetUserByUserAccount(UserData userData){return userMapper.GetUserByUserAccount(userData);}
 }
