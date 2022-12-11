@@ -17,4 +17,7 @@ public interface UserMapper {
 
     @Update("update user set UserAccount=#{UserAccount},UserName=#{UserName},UserEmail=#{UserEmail},UserPassword=#{UserPassword},UserDescription=#{UserDescription},UserGender=#{UserGender},UserRegisterDate=#{UserRegisterDate} where UserID=#{UserID}")
     int UpdateUser(UserData userData);
+
+    @Select("select UserPassword from user where UserAccount=#{UserAccount}")
+    String GetUserPassword(UserData userData);
 }

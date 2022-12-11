@@ -29,4 +29,8 @@ public class UserService {
         int x = userMapper.UpdateUser(userData);
         return x > 0;
     }
+
+    public String GetUserPassword(UserData userData){
+        return userMapper.GetUserPassword(userData);
+    }
 }
