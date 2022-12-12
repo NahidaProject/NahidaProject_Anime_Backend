@@ -3,11 +3,10 @@ package NahidaProject.Anime.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @ResponseBody
-@CrossOrigin
 public class MainController {
     @Value("${Nahida.project-name}")
     String PROJECT;

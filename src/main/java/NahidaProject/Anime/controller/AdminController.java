@@ -5,12 +5,11 @@ import NahidaProject.Anime.service.AdminService;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @ResponseBody
-@CrossOrigin
 @RequestMapping("/api/admin")
 public class AdminController {
     @Resource

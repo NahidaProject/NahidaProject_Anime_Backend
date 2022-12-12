@@ -4,7 +4,7 @@ import NahidaProject.Anime.entity.AdminData;
 import NahidaProject.Anime.mapper.AdminMapper;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Service
 public class AdminService {

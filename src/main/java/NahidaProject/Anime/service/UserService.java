@@ -4,7 +4,7 @@ import NahidaProject.Anime.entity.UserData;
 import NahidaProject.Anime.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 @Service
@@ -37,5 +37,5 @@ public class UserService {
         return userMapper.GetUserName(userData);
     }
     public String GetUserNameByUserEmail(UserData userData){return userMapper.GetUserNameByUserEmail(userData);}
-    public UserData GetUserByUserAccount(UserData userData){return userMapper.GetUserByUserAccount(userData);}
+    public UserData GetUserByUserAccount(String userData){return userMapper.GetUserByUserAccount(userData);}
 }

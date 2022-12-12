@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @RestController
 @RequestMapping("/api/file")
 @ResponseBody
-@CrossOrigin
 public class FileUploadController {
 
     @Resource

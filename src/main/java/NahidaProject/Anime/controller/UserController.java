@@ -6,17 +6,15 @@ import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
 @ResponseBody
-@CrossOrigin
 @RequestMapping("/api/user")
-@Slf4j
 public class UserController {
     @Resource
     UserService userService;
@@ -97,7 +95,7 @@ public class UserController {
         String UserName1 = userService.GetUserNameByUserEmail(userData);
         if(UserName.equals(UserName1)){
     //  比对一致后从数据库获取原始用户信息后修改密码
-            UserData userData1 = userService.GetUserByUserAccount(userData);
+            UserData userData1 = userService.GetUserByUserAccount(userData.getUserAccount());
             userData1.setUserPassword(userData.getUserPassword());
             userService.UpdateUser(userData1);
             return gson.toJson("SUCCESS");

@@ -5,12 +5,11 @@ import NahidaProject.Anime.service.AdminService;
 import NahidaProject.Anime.service.YiYanService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 @RestController
 @ResponseBody
-@CrossOrigin
 @RequestMapping("/api/YiYan")
 public class YiYanController {
     @Resource

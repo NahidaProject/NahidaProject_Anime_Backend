@@ -4,7 +4,7 @@ import NahidaProject.Anime.entity.YiYanData;
 import NahidaProject.Anime.mapper.YiYanMapper;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 @Service

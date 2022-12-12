@@ -1,3 +1,9 @@
+# 查看更多配置项
+# https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties.data
+#  变量
+Nahida:
+ project-name: Anime
+ media-path: F:/anime
 web:
  upload-path: F:/
 # spring配置
@@ -14,7 +20,7 @@ spring:
 server:
  port: 1314
  address: 0.0.0.0
-#  变量
-Nahida:
- project-name: Anime
- media-path: F:/anime
+# 日志输出
+logging:
+ file:
+  path: ${web.upload-path}

@@ -28,5 +28,5 @@ public interface UserMapper {
     String GetUserNameByUserEmail(UserData userData);
 
     @Select("select * from user where UserAccount=#{UserAccount}")
-    UserData GetUserByUserAccount(UserData userData);
+    UserData GetUserByUserAccount(String userData);
 }
