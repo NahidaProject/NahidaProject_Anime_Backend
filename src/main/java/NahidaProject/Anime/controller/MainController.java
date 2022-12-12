@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class MainController {
     @Value("${Nahida.project-name}")
     String PROJECT;
-
     @RequestMapping("/")
     //  访问localhost:1314返回Welcome To Nahida Anime Index Page
     public String index() {

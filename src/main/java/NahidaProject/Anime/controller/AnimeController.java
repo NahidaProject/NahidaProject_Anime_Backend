@@ -15,16 +15,10 @@ public class AnimeController {
     @Resource
     AnimeService animeService;
     //  新增动漫
+    Gson gson = new Gson();
     @RequestMapping(value = "/NewAnime",method = RequestMethod.POST)
     private String NewAnime(@RequestBody AnimeData animeData){
-        Gson gson = new Gson();
-    //  将动漫ID关联动漫类型和动漫配音
-        AnimeMN(animeData);
-        if(animeService.NewAnime(animeData)){
-           return gson.toJson("SUCCESS");
-        }else {
-           return gson.toJson("FAILED");
-        }
+        return animeService.NewAnime(animeData)?gson.toJson("SUCCESS"):gson.toJson("FAILED");
     }
     //  获取所有动漫
     @RequestMapping("/GetAllAnimes")
@@ -42,30 +36,14 @@ public class AnimeController {
             method = {RequestMethod.PUT,RequestMethod.POST},
             produces = "application/json;charset=UTF-8")
     private String UpdateAnime(@RequestBody AnimeData animeData){
-        Gson gson = new Gson();
+    //  先删除目标动漫类型和CV
         animeService.DeleteAllTypes(animeData.getAnimeID());
         animeService.DeleteAllCVs(animeData.getAnimeID());
-        AnimeMN(animeData);
-        if(animeService.UpdateAnime(animeData)){
-            return gson.toJson("SUCCESS");
-        }else{
-            return gson.toJson("失败");
-        }
+        return animeService.UpdateAnime(animeData)?gson.toJson("SUCCESS"):gson.toJson("失败");
     }
     //  删除动漫
     @RequestMapping(value = "/DeleteAnime",method = RequestMethod.DELETE)
     private void DeleteAnime(@RequestBody AnimeData animeData){
         animeService.DeleteAnime(animeData.getAnimeID());
-    }
-
-    private void AnimeMN(@RequestBody AnimeData animeData) {
-        String[] AnimeType = animeData.getAnimeType().split(",");
-        for (String type:AnimeType) {
-            animeService.UpdateType(type,animeData.getAnimeID());
-        }
-        String[] CVName = animeData.getCVName().split(",");
-        for (String name:CVName) {
-            animeService.UpdateCV(name,animeData.getAnimeID());
-        }
     }
 }

@@ -9,12 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 public class AccountInspection {
     UserData sessionData;
     String cookieUserAccount;
-
     public AccountInspection(UserData sessionUserData, HttpServletRequest request) {
         this.sessionData = sessionUserData;
         this.cookieUserAccount = GetUserAccount(request);
     }
-
     public boolean LoginInspection(){
         if(this.sessionData.getUserAccount()!=null){
             return this.sessionData.getUserAccount().equals(this.cookieUserAccount);
@@ -23,7 +21,6 @@ public class AccountInspection {
             return false;
         }
     }
-
     public String GetUserAccount(HttpServletRequest request){
         Cookie[] cookies =  request.getCookies();
         if(cookies != null){

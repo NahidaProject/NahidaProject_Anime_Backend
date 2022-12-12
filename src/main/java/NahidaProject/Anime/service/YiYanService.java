@@ -11,16 +11,18 @@ import java.util.List;
 public class YiYanService {
     @Resource
     YiYanMapper yiYanMapper;
-
+    @Resource
+    AdminService adminService;
     public YiYanData RandomYiYan(){
         return yiYanMapper.Random();
     }
-
     public List<YiYanData> GetAllYiYan(){
-        return yiYanMapper.GetAllYiYan();
+        List<YiYanData> yiYanDataList;
+        yiYanDataList = yiYanMapper.GetAllYiYan();
+        return yiYanDataList;
     }
-
     public void NewYiYan(YiYanData yiYanData) {
+        yiYanData.setAdminID(adminService.GetAdminIDByAccount(yiYanData.getAdminAccount()));
         yiYanMapper.NewYiYan(yiYanData);
     }
 }

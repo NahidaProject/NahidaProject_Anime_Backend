@@ -13,15 +13,12 @@ public class AdminService {
     public boolean AdminLogin(AdminData adminData){
         return adminMapper.AdminLoginByAccount(adminData.getAdminAccount()).equals(adminData.getAdminPassword());
     }
-
     public boolean AdminRegister(AdminData adminData){
         int x = adminMapper.AdminRegister(adminData);
         return x > 0;
     }
-
     public String GetAdminName(String AdminAccount){
         return adminMapper.GetAdminNameByAccount(AdminAccount);
     }
-
     public int GetAdminIDByAccount(String AdminAccount){return adminMapper.GetAdminIDByAccount(AdminAccount);}
 }

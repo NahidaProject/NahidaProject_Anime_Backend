@@ -14,12 +14,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AdminController {
     @Resource
     AdminService adminService;
+    Gson gson = new Gson();
     //    管理平台管理员登录接口
     @RequestMapping(value = "/admin_login",method = RequestMethod.POST)
     private String login(@RequestBody AdminData adminData, HttpServletResponse response){
-        boolean flag = adminService.AdminLogin(adminData);
-        Gson gson = new Gson();
-        if(flag){
+        if(adminService.AdminLogin(adminData)){
             response.setStatus(200);
             return gson.toJson("SUCCESS");
         }else {
@@ -30,7 +29,6 @@ public class AdminController {
     //    管理平台管理员注册接口
     @RequestMapping(value = "/admin_register",method = RequestMethod.POST)
     private String register(@RequestBody AdminData adminData,HttpServletResponse response){
-        Gson gson = new Gson();
         if(adminService.AdminRegister(adminData)){
             response.setStatus(200);
             return gson.toJson("SUCCESS");
@@ -43,7 +41,6 @@ public class AdminController {
     @RequestMapping(value = "{account}",produces = "application/json;charset=UTF-8")
     private String getName(HttpServletResponse response, @PathVariable String account) {
         response.setStatus(200);
-        Gson gson = new Gson();
         return gson.toJson(adminService.GetAdminName(account));
     }
 }

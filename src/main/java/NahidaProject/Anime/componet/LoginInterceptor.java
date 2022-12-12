@@ -31,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 //  若无Session则告知用户未登录   前端跳转登录页
                 return handleResponse(response);
             }
-//        完整性校验通过后放行
+//  完整性校验通过后放行
             return new AccountInspection(userDataSession,request).LoginInspection();
         }
         return true;

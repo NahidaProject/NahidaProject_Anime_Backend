@@ -13,7 +13,6 @@ public class UserLoginMvcConfig implements WebMvcConfigurer {
     public LoginInterceptor authInterceptor() {
         return new LoginInterceptor();
     }
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor());

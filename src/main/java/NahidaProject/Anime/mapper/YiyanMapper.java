@@ -15,5 +15,5 @@ public interface YiYanMapper {
     YiYanData Random();
 
     @Insert("INSERT into yiyan(YiYanID,AdminID,Sentence,Origin) values(#{YiYanID},#{AdminID},#{Sentence},#{Origin})")
-    int NewYiYan(YiYanData yiyanData);
+    void NewYiYan(YiYanData yiyanData);
 }
