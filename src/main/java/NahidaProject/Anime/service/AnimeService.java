@@ -49,4 +49,8 @@ public class AnimeService {
             UpdateCV(name,animeData.getAnimeID());
         }
     }
+
+    public List<AnimeData> GetRecommendAnimes() {
+        return animeMapper.GetRecommendAnimes();
+    }
 }

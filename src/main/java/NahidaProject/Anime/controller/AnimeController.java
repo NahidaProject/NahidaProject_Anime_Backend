@@ -46,4 +46,7 @@ public class AnimeController {
     private void DeleteAnime(@RequestBody AnimeData animeData){
         animeService.DeleteAnime(animeData.getAnimeID());
     }
+    //  获取推荐动漫
+    @RequestMapping(value = "GetRecommendAnimes")
+    private List<AnimeData> GetRecommendAnimes(){return animeService.GetRecommendAnimes();}
 }

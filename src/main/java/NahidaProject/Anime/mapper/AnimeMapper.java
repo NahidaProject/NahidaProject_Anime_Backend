@@ -33,4 +33,7 @@ public interface AnimeMapper {
 
     @Delete("delete from type2anime where AnimeID = #{AnimeID}")
     void DeleteAllTypes(int AnimeID);
+
+    @Select("call recommendanimes()")
+    List<AnimeData> GetRecommendAnimes();
 }
