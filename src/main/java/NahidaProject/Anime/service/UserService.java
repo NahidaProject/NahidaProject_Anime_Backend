@@ -50,4 +50,7 @@ public class UserService {
         }
 
     }
+    public int GetUserIDByUserAccount(String userAccount) {
+        return userMapper.GetUserByUserAccount(userAccount).getUserID();
+    }
 }
