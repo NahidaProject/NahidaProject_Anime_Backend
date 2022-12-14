@@ -3,7 +3,6 @@
 #  变量
 Nahida:
  project-name: Anime
- media-path: F:/anime
 web:
  upload-path: F:/
 # spring配置

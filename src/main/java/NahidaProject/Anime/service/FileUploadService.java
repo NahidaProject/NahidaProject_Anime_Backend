@@ -12,15 +12,12 @@ import java.io.IOException;
 public class FileUploadService {
     @Resource
     AnimeService animeService;
-    //  将配置文件的Nahida.media-path赋值给mediaPath
-    @Value("${Nahida.media-path}")
-    String mediaPath;
     public Object saveThisPoster(MultipartFile poster, int aid) {
         String posterName;
         if(aid>=10){
-            posterName = mediaPath + "/main_image/" + "0000"+aid + ".png";
+            posterName = "F:/anime" + "/main_image/" + "0000"+aid + ".png";
         }else {
-            posterName = mediaPath + "/main_image/" + "00000" + aid + ".png";
+            posterName = "F:/anime" + "/main_image/" + "00000" + aid + ".png";
         }
         File pFile = new File(posterName);
         try {
@@ -48,13 +45,23 @@ public class FileUploadService {
         String videoName;
         if(aid>=10){
             //  存放路径为 mediaPath/videos/六位视频序号/六位视频序号_三位视频集数.mp4
-            videoName = mediaPath + "/videos/" + "0000"+aid + "/" + "0000"+aid + "_" + Episode + ".mp4";
+            videoName = "F:/anime" + "/videos/" + "0000"+aid + "/" + "0000"+aid + "_" + Episode + ".mp4";
         }else {
-            videoName = mediaPath + "/videos/" + "00000" + aid + "/" + "00000" + aid + "_" + Episode + ".mp4";
+            videoName = "F:/anime" + "/videos/" + "00000" + aid + "/" + "00000" + aid + "_" + Episode + ".mp4";
         }
         File pFile = new File(videoName);
         try {
             videos.transferTo(pFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "上传失败";
+        }
+        return "nia~";
+    }
+    public String SaveNewsImage(MultipartFile image,int NewsID){
+        File pFile = new File("F:/anime"+"/news/card/"+NewsID+".jpg");
+        try {
+            image.transferTo(pFile);
         } catch (IOException e) {
             e.printStackTrace();
             return "上传失败";
