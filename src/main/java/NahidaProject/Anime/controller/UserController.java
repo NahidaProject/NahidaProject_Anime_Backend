@@ -20,33 +20,33 @@ public class UserController {
     Gson gson = new Gson();
     //  获取所有用户
     @RequestMapping("/GetAllUsers")
-    public List<UserData> GetAllUsers(){
+    private List<UserData> GetAllUsers(){
         return userService.GetAllUsers();
     }
     //  获取最新用户ID并且加1 用于注册用户设置UserID
     @RequestMapping("/GetCurrentUserID")
-    public int GetUserID(){
+    private int GetUserID(){
         return GetAllUsers().size()+1;
     }
     //  注册用户
     @RequestMapping(value = "NewUser",method = RequestMethod.POST)
-    public String NewUser(@RequestBody UserData userData){
+    private String NewUser(@RequestBody UserData userData){
         return userService.NewUser(userData)?gson.toJson("SUCCESS"):gson.toJson("FAILED");
     }
     //  删除用户
     @RequestMapping(value = "DeleteUser",method = RequestMethod.DELETE)
-    public String DeleteUser(@RequestBody UserData userData){
+    private String DeleteUser(@RequestBody UserData userData){
         userService.DeleteUser(userData.getUserID());
         return gson.toJson("SUCCESS");
     }
     //  更新用户资料
     @RequestMapping(value = "UpdateUser",method = RequestMethod.PUT)
-    public String UpdateUser(@RequestBody UserData userData){
+    private String UpdateUser(@RequestBody UserData userData){
         return userService.UpdateUser(userData)?gson.toJson("SUCCESS"):gson.toJson("FAILED");
     }
     //  用户登录
     @RequestMapping(value = "login",method = RequestMethod.POST)
-    public String login(@RequestBody UserData userData, HttpSession session,HttpServletResponse response){
+    private String login(@RequestBody UserData userData, HttpSession session,HttpServletResponse response){
         if(!userService.Certification(userData)){
     //  用户不存在或密码错误
             response.setStatus(403);
@@ -64,7 +64,7 @@ public class UserController {
     }
     //  忘记密码
     @RequestMapping(value = "forgot",method = RequestMethod.POST)
-    public String forgot(@RequestBody UserData userData){
+    private String forgot(@RequestBody UserData userData){
         return userService.ResetPassword(userData)?gson.toJson("SUCCESS"):gson.toJson("FAILED");
     }
 }

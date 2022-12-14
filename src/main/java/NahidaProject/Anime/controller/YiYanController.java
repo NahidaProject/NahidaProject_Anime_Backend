@@ -15,12 +15,12 @@ public class YiYanController {
     YiYanService yiYanService;
     //  随机一言 用于前端主站励志用户
     @RequestMapping("/Random")
-    public YiYanData Random(){
+    private YiYanData Random(){
         return yiYanService.RandomYiYan();
     }
     //  获取所有一言
     @RequestMapping("/GetAllYiYan")
-    public List<YiYanData> GetAllYiYan(){
+    private List<YiYanData> GetAllYiYan(){
         return yiYanService.GetAllYiYan();
     }
     //  新增一言
