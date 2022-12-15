@@ -54,4 +54,9 @@ public class AnimeController {
     private List<AnimeData> FilterAnimes(@RequestBody AnimeData animeData){
         return animeService.FilterAnimes(animeData);
     }
+    //  模糊查询
+    @RequestMapping("/GetAnimeByFuzzyQuery/{FuzzyName}")
+    private List<AnimeData> GetAnimeByFuzzyQuery(@PathVariable String FuzzyName){
+        return animeService.GetAnimesByAnimeName(FuzzyName);
+    }
 }

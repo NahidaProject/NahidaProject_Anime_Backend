@@ -75,4 +75,8 @@ public class AnimeService {
                 (animeData.getAnimeType()==null||s.getAnimeType().contains(animeData.getAnimeType())))
                 .toList();
     }
+    public List<AnimeData> GetAnimesByAnimeName(String AnimeName){
+        String ConcatName = "%"+AnimeName+"%";
+        return animeMapper.GetAnimesByAnimeName(ConcatName);
+    }
 }

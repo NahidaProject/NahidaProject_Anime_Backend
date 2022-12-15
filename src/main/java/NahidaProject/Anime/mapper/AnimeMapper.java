@@ -36,4 +36,7 @@ public interface AnimeMapper {
 
     @Select("call recommendanimes()")
     List<AnimeData> GetRecommendAnimes();
+
+    @Select("call findanimelike(#{AnimeName})")
+    List<AnimeData> GetAnimesByAnimeName(String AnimeName);
 }
