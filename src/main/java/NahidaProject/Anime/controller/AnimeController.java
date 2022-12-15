@@ -47,6 +47,11 @@ public class AnimeController {
         animeService.DeleteAnime(animeData.getAnimeID());
     }
     //  获取推荐动漫
-    @RequestMapping(value = "GetRecommendAnimes")
+    @RequestMapping(value = "/GetRecommendAnimes")
     private List<AnimeData> GetRecommendAnimes(){return animeService.GetRecommendAnimes();}
+    //  根据地区/状态/风格筛选动漫
+    @RequestMapping(value = "/FilterAnimes",method = RequestMethod.POST)
+    private List<AnimeData> FilterAnimes(@RequestBody AnimeData animeData){
+        return animeService.FilterAnimes(animeData);
+    }
 }

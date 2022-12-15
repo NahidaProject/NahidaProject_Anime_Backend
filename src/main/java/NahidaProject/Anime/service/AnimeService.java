@@ -5,7 +5,11 @@ import NahidaProject.Anime.mapper.AnimeMapper;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class AnimeService {
@@ -52,5 +56,23 @@ public class AnimeService {
 
     public List<AnimeData> GetRecommendAnimes() {
         return animeMapper.GetRecommendAnimes();
+    }
+
+    public List<AnimeData> FilterAnimes(AnimeData animeData) {
+        List<AnimeData> AllAnimes = GetAllAnimes();
+        if(Objects.equals(animeData.getAnimeLanguage(), "")){
+            animeData.setAnimeLanguage(null);
+        }
+        if(Objects.equals(animeData.getAnimeType(), "")){
+            animeData.setAnimeType(null);
+        }
+        if(Objects.equals(animeData.getAnimeStats(), "")){
+            animeData.setAnimeStats(null);
+        }
+        return AllAnimes.stream().filter(s->
+                (animeData.getAnimeStats()==null||s.getAnimeStats().equals(animeData.getAnimeStats()))&&
+                (animeData.getAnimeLanguage()==null||s.getAnimeLanguage().equals(animeData.getAnimeLanguage()))&&
+                (animeData.getAnimeType()==null||s.getAnimeType().contains(animeData.getAnimeType())))
+                .toList();
     }
 }
