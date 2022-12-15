@@ -6,6 +6,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,9 @@ public class CommentService {
     @Resource
     UserService userService;
     public List<CommentData> GetCommentsByAnimeID(String AnimeID){
-        return commentMapper.GetCommentsByAnimeID(AnimeID);
+        List<CommentData> commentDataList = commentMapper.GetCommentsByAnimeID(AnimeID);
+        Collections.reverse(commentDataList);
+        return commentDataList;
     }
 
     public void AddCommentByAnimeID(CommentData commentData) {
