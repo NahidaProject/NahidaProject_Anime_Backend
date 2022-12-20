@@ -25,4 +25,8 @@ public class AnimeCVController {
     private void DeleteCV(@RequestBody AnimeCVData animeCVData){
         animeCVService.DeleteCV(animeCVData);
     }
+    @RequestMapping("GetCVByAnimeID/{AnimeID}")
+    private List<AnimeCVData> GetCVByAnimeID(@PathVariable int AnimeID){
+        return animeCVService.GetCVByAnimeID(AnimeID);
+    }
 }

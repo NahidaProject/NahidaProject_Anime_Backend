@@ -24,4 +24,8 @@ public class AnimeCVServiceImpl implements AnimeCVService {
     public void DeleteCV(AnimeCVData animeCVData) {
         animeCVMapper.DeleteCV(animeCVData.getCVName());
     }
+    @Override
+    public List<AnimeCVData> GetCVByAnimeID(int AnimeID){
+        return animeCVMapper.GetCVByAnimeID(AnimeID);
+    }
 }

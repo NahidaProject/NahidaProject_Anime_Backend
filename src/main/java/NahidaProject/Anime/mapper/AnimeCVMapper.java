@@ -18,4 +18,7 @@ public interface AnimeCVMapper {
 
     @Delete("delete from animecv where CVName=#{CVName}")
     void DeleteCV(String cvName);
+
+    @Select("select CVName from cvgroupanime where AnimeID=#{AnimeID}")
+    List<AnimeCVData> GetCVByAnimeID(int AnimeID);
 }

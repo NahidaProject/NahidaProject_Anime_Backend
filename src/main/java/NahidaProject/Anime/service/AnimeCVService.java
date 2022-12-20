@@ -8,4 +8,5 @@ public interface AnimeCVService {
     List<AnimeCVData> GetAllAnimeCV();
     void AddCV(AnimeCVData animeCVData);
     void DeleteCV(AnimeCVData animeCVData);
+    List<AnimeCVData> GetCVByAnimeID(int AnimeID);
 }
