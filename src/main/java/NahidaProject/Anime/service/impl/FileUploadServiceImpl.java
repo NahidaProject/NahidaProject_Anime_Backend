@@ -17,9 +17,9 @@ public class FileUploadServiceImpl implements FileUploadService {
     public Object saveThisPoster(MultipartFile poster, int aid) {
         String posterName;
         if(aid>=10){
-            posterName = "F:/anime" + "/main_image/" + "0000"+aid + ".png";
+            posterName = "/home/anime" + "/main_image/" + "0000"+aid + ".png";
         }else {
-            posterName = "F:/anime" + "/main_image/" + "00000" + aid + ".png";
+            posterName = "/home/anime" + "/main_image/" + "00000" + aid + ".png";
         }
         File pFile = new File(posterName);
         try {
@@ -48,9 +48,9 @@ public class FileUploadServiceImpl implements FileUploadService {
         String videoName;
         if(aid>=10){
             //  存放路径为 mediaPath/videos/六位视频序号/六位视频序号_三位视频集数.mp4
-            videoName = "F:/anime" + "/videos/" + "0000"+aid + "/" + "0000"+aid + "_" + Episode + ".mp4";
+            videoName = "/home/anime" + "/videos/" + "0000"+aid + "/" + "0000"+aid + "_" + Episode + ".mp4";
         }else {
-            videoName = "F:/anime" + "/videos/" + "00000" + aid + "/" + "00000" + aid + "_" + Episode + ".mp4";
+            videoName = "/home/anime" + "/videos/" + "00000" + aid + "/" + "00000" + aid + "_" + Episode + ".mp4";
         }
         File pFile = new File(videoName);
         try {
@@ -63,7 +63,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     }
     @Override
     public String SaveNewsImage(MultipartFile image,int NewsID){
-        File pFile = new File("F:/anime"+"/news/card/"+NewsID+".jpg");
+        File pFile = new File("/home/anime"+"/news/card/"+NewsID+".jpg");
         try {
             image.transferTo(pFile);
         } catch (IOException e) {
