@@ -26,12 +26,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 //  cookies需携带JSESSIONID和Account
         if(request.getRequestURL().toString().equals("http://localhost:1314/api/serverStatus")){
             UserData userDataSession = (UserData) httpSession.getAttribute("USER_SESSION");
-            if(userDataSession==null){
+            if(userDataSession==null||!new AccountInspection(userDataSession,request).LoginInspection()){
 //  若无Session则告知用户未登录   前端跳转登录页
                 return handleResponse(response);
             }
 //  完整性校验通过后放行
-            return new AccountInspection(userDataSession,request).LoginInspection();
+            return true;
         }
         return true;
     }
