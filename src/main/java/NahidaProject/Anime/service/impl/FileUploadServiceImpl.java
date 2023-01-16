@@ -57,7 +57,12 @@ public class FileUploadServiceImpl implements FileUploadService {
         }
         File pFile = new File(videoName);
         try {
-            videos.transferTo(pFile);
+            File dir = new File(animePath+"anime" + "/videos/" + "0000"+aid);
+            if (dir.mkdirs()) {
+                videos.transferTo(pFile);
+            }else{
+                videos.transferTo(pFile);
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return "上传失败";
