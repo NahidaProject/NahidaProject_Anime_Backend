@@ -24,7 +24,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession httpSession = request.getSession();
 //  论坛请求serverStatus以拦截登录状态
 //  cookies需携带JSESSIONID和Account
-        if(request.getRequestURL().toString().equals("http://localhost:1314/api/serverStatus")){
+        if(request.getRequestURI().toString().equals("/api/serverStatus")){
             UserData userDataSession = (UserData) httpSession.getAttribute("USER_SESSION");
             if(userDataSession==null||!new AccountInspection(userDataSession,request).LoginInspection()){
 //  若无Session则告知用户未登录   前端跳转登录页
